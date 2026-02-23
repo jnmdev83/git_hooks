@@ -1,0 +1,9 @@
+repos:
+-   repo: local
+    hooks:
+    -   id: check-jira-ticket
+        name: Check Jira Ticket
+        entry: python3 scripts/check_jira.py # How to run it
+        language: python
+        stages: [commit-msg]              # This runs specifically on the message
+        additional_dependencies: [pyyaml] # If your script needs extra libraries
