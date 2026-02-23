@@ -14,3 +14,5 @@ repos:
             files: \.(py|yaml|json|txt|env)$
             exclude: ^scripts/find_secrets\.py$
             stages: [pre-commit]
+#  pre-commit install --hook-type commit-msg
+#  pip install pre-commit
