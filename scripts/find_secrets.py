@@ -1,0 +1,32 @@
+import sys
+import re
+
+# Patterns to look for
+SECRET_PATTERNS = {
+    "AWS API Key": r"AKIA[0-9A-Z]{16}",
+    "Generic Secret": r"([sS][eE][cC][rR][eE][tT]|[pP][aA][sS][sS][wW][oO][rR][dD])\s*[:=]\s*['\"].+['\"]",
+    "Bearer Token": r"Bearer\s+[A-Za-z0-9\-\._~\+\/]+"
+}
+
+def scan_file(filepath):
+    failed = False
+    with open(filepath, 'r') as f:
+        for line_num, line in enumerate(f, 1):
+            for name, pattern in SECRET_PATTERNS.items():
+                if re.search(pattern, line):
+                    print(f"CRITICAL: {name} found in {filepath} at line {line_num}!")
+                    failed = True
+    return failed
+
+if __name__ == "__main__":
+    # pre-commit passes the list of changed files as arguments
+    files_to_check = sys.argv[1:]
+    has_errors = False
+
+    for file in files_to_check:
+        if scan_file(file):
+            has_errors = True
+
+    if has_errors:
+        sys.exit(1) # Block the commit
+    sys.exit(0) # All clear

@@ -14,4 +14,4 @@ if __name__ == "__main__":
 
     # 3. To test 'detect-secrets' or 'gitleaks' hook: 
     # Uncomment the line below. The hook should block the commit!
-    AWS_SECRET_KEY = "AKIAIMOR76BEXAMPLE"
+    # AWS_SECRET_KEY = "AKIAIMOR76BEXAMPLE"
