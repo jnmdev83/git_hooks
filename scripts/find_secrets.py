@@ -21,7 +21,6 @@ def scan_file(filepath):
     return failed
 
 if __name__ == "__main__":
-    # pre-commit passes the list of changed files as arguments
     files_to_check = sys.argv[1:]
     has_errors = False
 
@@ -30,5 +29,5 @@ if __name__ == "__main__":
             has_errors = True
 
     if has_errors:
-        sys.exit(1) # Block the commit
-    sys.exit(0) # All clear
+        sys.exit(1) 
+    sys.exit(0) 
